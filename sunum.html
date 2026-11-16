@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftBox - Hediye Sunumu Hazırla</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Sunum CSS Dosyası -->
+    <link rel="stylesheet" href="sunum.css">
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <div class="presentation-container">
+        <!-- Başlık Alanı -->
+        <div class="presentation-header">
+            <h1>✨ Hediyeni Nasıl Sunmak İstersin? ✨</h1>
+            <p>Unutulmaz bir deneyim yaşatmak için adımları kişiselleştir!</p>
+        </div>
+
+        <!-- Adım 1: Hediye Kutusu Seçimi (Zorunlu) -->
+        <div class="step-card active" id="step-1">
+            <h2>1. Hediye Kutusu Tasarımı Seçimi <span class="required">*Zorunlu</span></h2>
+            <p>Kutunun dış görünüşünü seçerek başla!</p>
+            
+            <div class="box-options-grid">
+                <!-- Klasör adını ve dosya isimlerini tam olarak ekledik -->
+                <div class="box-option" onclick="selectBox('Default', this)">
+                    <img src="Hediye Kutuları/Default.png" alt="Klasik Kutu">
+                    <span>Klasik Kutu</span>
+                </div>
+                <div class="box-option" onclick="selectBox('Halloween', this)">
+                    <img src="Hediye Kutuları/Halloween Temalı Kutu.png" alt="Halloween Kutusu">
+                    <span>Halloween Temalı</span>
+                </div>
+                <div class="box-option" onclick="selectBox('Havali', this)">
+                    <img src="Hediye Kutuları/Havalı Kutu.png" alt="Havalı Kutu">
+                    <span>Havalı Kutu</span>
+                </div>
+                <div class="box-option" onclick="selectBox('Resmi', this)">
+                    <img src="Hediye Kutuları/Resmi Kutu.png" alt="Resmi Kutu">
+                    <span>Resmi Kutu</span>
+                </div>
+                <div class="box-option" onclick="selectBox('Yilbasi', this)">
+                    <img src="Hediye Kutuları/Yılbaşı Temalı Kutu.png" alt="Yılbaşı Kutusu">
+                    <span>Yılbaşı Temalı</span>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="next-btn" onclick="nextStep(2)">İlerle ➔</button>
+            </div>
+        </div>
+
+        <!-- Adım 2: Pasta Seçimi ve Notu (İsteğe Bağlı) -->
+        <div class="step-card" id="step-2">
+            <h2>2. Pasta Seçimi <span class="optional">*(İsteğe Bağlı)*</span></h2>
+            <p>Hediyenin yanına tatlı bir sürpriz eklemek ister misin?</p>
+            
+            <div class="cake-options-grid">
+                <div class="cake-option" onclick="selectCake('Antep Fıstıklı Pasta', this)">
+                    <img src="Pastalar/Antep Fıstıklı Pasta.png" alt="Antep Fıstıklı Pasta">
+                    <span>Antep Fıstıklı</span>
+                </div>
+                <div class="cake-option" onclick="selectCake('Çikolatalı Pasta', this)">
+                    <img src="Pastalar/Çikolatalı Pasta.png" alt="Çikolatalı Pasta">
+                    <span>Çikolatalı</span>
+                </div>
+                <div class="cake-option" onclick="selectCake('Çilekli Pasta', this)">
+                    <img src="Pastalar/Çilekli Pasta.png" alt="Çilekli Pasta">
+                    <span>Çilekli</span>
+                </div>
+                <div class="cake-option" onclick="selectCake('Kakaolu Pasta', this)">
+                    <img src="Pastalar/Kakaolu Pasta.png" alt="Kakaolu Pasta">
+                    <span>Kakaolu</span>
+                </div>
+                <div class="cake-option" onclick="selectCake('Karamelli Pasta', this)">
+                    <img src="Pastalar/Karamelli Pasta.png" alt="Karamelli Pasta">
+                    <span>Karamelli</span>
+                </div>
+                <div class="cake-option" onclick="selectCake('Muzlu Pasta', this)">
+                    <img src="Pastalar/Muzlu Pasta.png" alt="Muzlu Pasta">
+                    <span>Muzlu</span>
+                </div>
+                <div class="cake-option" onclick="selectCake('Orman Meyveli Pasta', this)">
+                    <img src="Pastalar/Orman Meyveli Pasta.png" alt="Orman Meyveli">
+                    <span>Orman Meyveli</span>
+                </div>
+                <div class="cake-option" onclick="selectCake('Vanilyalı Pasta', this)">
+                    <img src="Pastalar/Vanilyalı Pasta.png" alt="Vanilyalı Pasta">
+                    <span>Vanilyalı</span>
+                </div>
+            </div>
+
+            <!-- Pastaya Not Yazma Soru Alanı (Başta Gizli) -->
+            <div id="cakeNoteQuestionArea" class="note-question-area" style="display: none;">
+                <p>Pastaya bir not yazmak ister misin?</p>
+                <div class="choice-btns">
+                    <button type="button" class="choice-btn" onclick="toggleCakeNoteInput(true, this)">Evet</button>
+                    <button type="button" class="choice-btn" onclick="toggleCakeNoteInput(false, this)">Hayır</button>
+                </div>
+            </div>
+
+            <!-- Kağıt Alanı (Max 50 Karakter, Başta Gizli) -->
+            <div id="cakeNoteInputArea" style="display: none; margin-top: 15px;">
+                <label for="cakeNoteText">Pasta Notu:</label>
+                <textarea id="cakeNoteText" maxlength="50" placeholder="Örn: Doğum günün kutlu olsun!" oninput="updateCakeCharCount()"></textarea>
+                <div class="char-counter"><span id="cakeCharCount">0</span>/50</div>
+            </div>
+
+            <div class="btn-group" style="justify-content: space-between; margin-top: 30px;">
+                <button class="back-btn" onclick="prevStep(1)">Geri</button>
+                <button class="next-btn" onclick="nextStep(3)">İlerle ➔</button>
+            </div>
+        </div>
+        <!-- Adım 3: Mektup ve Fotoğraf Yükleme (İsteğe Bağlı) -->
+        <div class="step-card" id="step-3">
+            <h2>3. Mektup ve Fotoğraf <span class="optional">*(İsteğe Bağlı)*</span></h2>
+            <p>Sevdiklerine duygularını aktarabileceğin bir mektup ve anı fotoğrafı ekleyebilirsin.</p>
+            
+            <!-- Mektup Kağıdı Alanı -->
+            <div class="letter-paper">
+                <label for="letterText">Mektup (Max 500 Karakter):</label>
+                <textarea id="letterText" maxlength="500" placeholder="Sevgili... Buraya içinden geçen güzel duyguları ve hislerini yazabilirsin ✨" oninput="updateLetterCharCount()"></textarea>
+                <div class="char-counter"><span id="letterCharCount">0</span>/500</div>
+            </div>
+
+            <!-- Fotoğraf Soru Alanı -->
+            <div class="photo-question-area">
+                <p>Mektubun yanına bir anı fotoğrafı da eklemek ister misin?</p>
+                <div class="choice-btns">
+                    <button type="button" class="choice-btn" onclick="togglePhotoUploadInput(true, this)">Evet</button>
+                    <button type="button" class="choice-btn" onclick="togglePhotoUploadInput(false, this)">Hayır</button>
+                </div>
+            </div>
+
+            <!-- Fotoğraf Yükleme Alanı (Başta Gizli) -->
+            <div id="photoUploadArea" style="display: none; margin-top: 15px;">
+                <label for="photoInput" class="custom-file-upload">
+                    📷 Fotoğraf Seç (JPG veya PNG)
+                </label>
+                <input type="file" id="photoInput" accept="image/*" onchange="handlePhotoUpload(event)" style="display: none;">
+                
+                <div id="photoPreviewContainer" style="display: none; margin-top: 10px; text-align: center;">
+                    <img id="photoPreview" src="" alt="Önizleme" style="max-width: 150px; border-radius: 10px; border: 2px dashed #ff4da6;">
+                    <p id="photoName" style="font-size: 12px; color: #555; margin-top: 5px;"></p>
+                </div>
+            </div>
+
+            <div class="btn-group" style="justify-content: space-between; margin-top: 30px;">
+                <button class="back-btn" onclick="prevStep(2)">Geri</button>
+                <button class="next-btn" onclick="nextStep(4)">İlerle ➔</button>
+            </div>
+        </div>
+        <!-- Adım 4: YouTube Müzik Ekleme (İsteğe Bağlı) -->
+        <div class="step-card" id="step-4">
+            <h2>4. Arka Plan Müziği <span class="optional">*(İsteğe Bağlı)*</span></h2>
+            <p>Hediye deneyimine eşlik edecek unutulmaz bir şarkı eklemek ister misin?</p>
+            
+            <div class="music-question-area">
+                <p>YouTube üzerinden bir şarkı eklemek ister misin?</p>
+                <div class="choice-btns">
+                    <button type="button" class="choice-btn" onclick="toggleMusicInput(true, this)">Evet</button>
+                    <button type="button" class="choice-btn" onclick="toggleMusicInput(false, this)">Hayır</button>
+                </div>
+            </div>
+
+            <!-- YouTube Link Giriş Alanı (Başta Gizli) -->
+            <div id="musicInputArea" style="display: none; margin-top: 15px;">
+                <label for="youtubeLink">YouTube Şarkı Linki:</label>
+                <input type="text" id="youtubeLink" placeholder="Örn: https://www.youtube.com/watch?v=..." oninput="handleYoutubeLink(this.value)">
+                <p id="musicStatusText" style="font-size: 12px; color: #888; margin-top: 5px;"></p>
+            </div>
+
+            <div class="btn-group" style="justify-content: space-between; margin-top: 30px;">
+                <button class="back-btn" onclick="prevStep(3)">Geri</button>
+                <button class="next-btn" onclick="nextStep(5)">İlerle ➔</button>
+            </div>
+        </div>
+        <!-- Adım 5: Arka Plan Efekti ve Final (Son Adım) -->
+        <div class="step-card" id="step-5">
+            <h2>5. Ekran Efekti ve Atmosfer <span class="optional">*(İsteğe Bağlı)*</span></h2>
+            <p>Hediye açıldığında ekranın yukarısından aşağıya doğru süzülecek atmosfer efektini seç!</p>
+            
+            <div class="effect-options-grid">
+                <div class="effect-option" onclick="selectEffect('confetti', this)">
+                    <span class="effect-icon">🎉</span>
+                    <span>Renkli Konfeti</span>
+                </div>
+                <div class="effect-option" onclick="selectEffect('hearts', this)">
+                    <span class="effect-icon">❤️</span>
+                    <span>Uçuşan Kalpler</span>
+                </div>
+                <div class="effect-option" onclick="selectEffect('flowers', this)">
+                    <span class="effect-icon">🌸</span>
+                    <span>Bahar Çiçekleri</span>
+                </div>
+                <div class="effect-option" onclick="selectEffect('snow', this)">
+                    <span class="effect-icon">❄️</span>
+                    <span>Kar Taneleri</span>
+                </div>
+                <div class="effect-option" onclick="selectEffect('leaves', this)">
+                    <span class="effect-icon">🍂</span>
+                    <span>Sonbahar Yaprakları</span>
+                </div>
+                <div class="effect-option" onclick="selectEffect('claps', this)">
+                    <span class="effect-icon">👏</span>
+                    <span>Alkış Emojileri</span>
+                </div>
+                <div class="effect-option" onclick="selectEffect('smiles', this)">
+                    <span class="effect-icon">😊</span>
+                    <span>Gülen Yüzler</span>
+                </div>
+                <div class="effect-option" onclick="selectEffect('kisses', this)">
+                    <span class="effect-icon">💋</span>
+                    <span>Öpücük İzleri</span>
+                </div>
+            </div>
+
+            <div class="btn-group" style="justify-content: space-between; margin-top: 30px;">
+                <button class="back-btn" onclick="prevStep(4)">Geri</button>
+                <button class="next-btn" onclick="finishPresentation()" style="background-color: #28a745;">Sunumu Tamamla</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sunum JS Dosyası -->
+    <script src="sunum.js"></script>
+</body>
+</html>

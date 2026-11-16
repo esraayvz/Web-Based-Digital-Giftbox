@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Hediye Var! 🎁</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="hediye.css">
+</head>
+<body>
+
+    <div id="fallingEffectsContainer"></div>
+
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-card">
+            <h2>Sana Bir Hediye Var!</h2>
+            <p id="welcomeMessage">Sana <b>...</b> kişisi bir hediye kutusu hazırladı. Hediye kutusunun içindekileri görmek için kutunun üstüne basman yeterli.</p>
+            <button class="start-btn" onclick="startGiftExperience()">Tamam</button>
+        </div>
+    </div>
+
+    <div class="presentation-wrapper">
+        <div class="box-container" id="boxContainer" onclick="handleBoxClick()">
+            <img id="selectedBoxImg" src="" alt="Hediye Kutusu" class="custom-box-img">
+            <p class="click-hint" id="clickHint">Tıklayarak Aç</p>
+        </div>
+
+        <div class="content-container" id="contentContainer" style="display: none;">
+            <div class="content-card" id="songCard" style="display: none;">
+                <p class="sender-msg">
+                    <b id="songSenderName"></b> sen bu kutuyu açarken dinlemeni istediği şarkı bu:
+                </p>
+                <div class="yt-row" id="youtubeLinkArea"></div>
+            </div>
+
+            <div class="content-card" id="cakeCard" style="display: none;">
+                <div class="cake-display">
+                    <div id="cakeVisualArea" class="cake-visual"></div>
+                    <h3 id="cakeTitle">Sana Özel Bir Pasta!</h3>
+                    <p id="cakeNoteDisplay" class="cake-note-text"></p>
+                </div>
+            </div>
+
+            <div class="content-card" id="itemsCard" style="display: none;">
+                <div id="itemsListArea" class="items-grid"></div>
+            </div>
+
+            <div class="content-card" id="letterCard" style="display: none;">
+                <div class="letter-box">
+                    <div id="photoDisplayArea" style="display: none;">
+                        <img id="giftPhoto" src="" alt="Hediye Fotoğrafı" class="gift-photo-styled">
+                    </div>
+                    <p id="letterTextDisplay"></p>
+                </div>
+            </div>
+
+            <div class="content-card finale-card" id="finaleCard" style="display: none;">
+                <p id="finaleText">Hediye kutunun tamamını açtın! Umarım hediyelerinden memnun kalmışsındır.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="hediye.js"></script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bitcount Grid Single', monospace !important;
+}
+
+body {
+    font-family: 'Bitcount Grid Single', monospace;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 218, 238, 0.65) 0%, transparent 32%),
+        radial-gradient(circle at 85% 80%, rgba(255, 235, 170, 0.55) 0%, transparent 32%),
+        #fffaf2;
+    color: #4a4a4a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    text-align: center;
+}
+
+#fallingEffectsContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99;
+}
+
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 218, 238, 0.65) 0%, transparent 32%),
+        radial-gradient(circle at 85% 80%, rgba(255, 235, 170, 0.55) 0%, transparent 32%),
+        #fffaf2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.welcome-card {
+    background: transparent;
+    padding: 30px 20px;
+    max-width: 520px;
+    text-align: center;
+    border: none;
+    box-shadow: none;
+}
+
+.welcome-card h2,
+.welcome-card p,
+.welcome-card b,
+.start-btn {
+    font-family: 'Bitcount Grid Single', monospace !important;
+}
+
+.welcome-card h2 {
+    color: #ff4da6;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+}
+
+.welcome-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.start-btn {
+    background: #ff4da6;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(255, 77, 166, 0.3);
+}
+
+.start-btn:hover {
+    background: #f03d95;
+    transform: translateY(-2px);
+}
+
+.presentation-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 92%;
+    max-width: 720px;
+    gap: 18px;
+    padding: 24px 0;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.custom-box-img {
+    width: 220px;
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    filter: none;
+}
+
+.custom-box-img:hover {
+    transform: scale(1.04);
+}
+
+.click-hint {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #ff4da6;
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+}
+
+.content-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 280px;
+}
+
+.content-card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 8px;
+    max-width: 460px;
+    width: 100%;
+    animation: fadeIn 0.45s ease;
+}
+
+.sender-msg {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.yt-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.yt-plain-link {
+    display: inline-block;
+    color: #ff4da6;
+    font-weight: bold;
+    word-break: break-all;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    max-width: 320px;
+}
+
+.copy-link-btn {
+    background: #ff4da6;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.copy-link-btn:hover {
+    background: #f03d95;
+}
+
+.copy-status {
+    width: 100%;
+    font-size: 0.8rem;
+    color: #28a745;
+    min-height: 1em;
+}
+
+.cake-display {
+    text-align: center;
+}
+
+.cake-visual img {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    background: transparent;
+    border: none;
+}
+
+.cake-display h3 {
+    margin-top: 10px;
+    font-size: 1.05rem;
+    color: #4a4a4a;
+}
+
+.cake-note-text {
+    background: #fffaf2;
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin-top: 14px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border: 1px solid rgba(255, 77, 166, 0.25);
+    display: none;
+}
+
+.items-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.gift-item-card {
+    width: 180px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    padding: 6px;
+}
+
+.gift-item-card img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px;
+    background: transparent;
+    border: none;
+}
+
+.gift-item-name {
+    font-size: 0.95rem;
+    color: #444;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.letter-box {
+    text-align: center;
+}
+
+#photoDisplayArea {
+    margin-bottom: 12px;
+}
+
+.gift-photo-styled {
+    max-width: 140px;
+    max-height: 140px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#letterTextDisplay {
+    white-space: pre-wrap;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.finale-card p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #ff4da6;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 720px) {
+    .presentation-wrapper {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .custom-box-img {
+        width: 170px;
+    }
+}
